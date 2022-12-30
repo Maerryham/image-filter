@@ -18,7 +18,3 @@ app.listen(PORT, () => {console.log(`Server is running on http://localhost:${POR
 
 //Load Routers
 // app.use('/', require('./routes'))
-
-app.get('/api', (req, res) => {
-    res.send('Hello World!');
-});
