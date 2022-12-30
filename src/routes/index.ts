@@ -7,6 +7,4 @@ const routes = express.Router();
 
 routes.use('/teachers', teachers);
 
-routes.use()
-
 export default routes;

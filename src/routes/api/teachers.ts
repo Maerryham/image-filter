@@ -2,8 +2,8 @@ import express from 'express';
 const teachers = express.Router()
 
 
-teachers.get('/api', (req, res) => {
-    res.send('Hello World!');
+teachers.get('/', (req, res) => {
+    res.send('Hello Teachers!');
 });
 
 export default teachers;
