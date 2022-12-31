@@ -1,13 +1,13 @@
 export const validateInput = (imageName: string, width: number, height: number) => {
-    if (!imageName){
+    if (!imageName || imageName===null || imageName === undefined || imageName===''){
         return { status: false, message: "Image name not specified" }
     }
     
-    if (!width){
+    if (!width || width===null || width === undefined || width===0){
         return { status: false, message: "Width not specified" }
     }
 
-    if (!height){
+    if (!height || width===null || width === undefined || width===0){
         return { status: false, message: "Heigth not specified" }
     }
     

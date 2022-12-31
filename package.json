@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .ts",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "test": "npm run build && npm run jasmine",
+    "jasmine": "jasmine",
     "build": "npx tsc"
   },
   "author": "Mariam Lawal",

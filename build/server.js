@@ -28,11 +28,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var bodyParser = __importStar(require("body-parser"));
+var morgan_1 = __importDefault(require("morgan"));
+var cors_1 = __importDefault(require("cors"));
+var index_1 = __importDefault(require("./routes/index"));
 var app = (0, express_1.default)();
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var PORT = 3000;
-app.listen(PORT, function () { console.log("Server is running on http://localhost:".concat(PORT)); });
-app.get('/api', function (req, res) {
+app.listen(PORT, function () {
+    console.log("Server is running on http://localhost:".concat(PORT));
+});
+app.use((0, morgan_1.default)('tiny'));
+app.use((0, cors_1.default)());
+app.use('/api', index_1.default);
+app.get('/', function (req, res) {
     res.send('Hello World!');
 });
