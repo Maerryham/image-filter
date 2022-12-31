@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { imageResize } from '../../controllers/imageResizer';
 import { validateInput } from '../../utilities/validateInput';
+import fs from 'fs'
 
 const images = express.Router();
 
@@ -22,6 +23,10 @@ images.get('/', async (req, res) => {
     });
   }
 
+  if (fs.existsSync(outputFile)){
+    return res.sendFile(outputFile);
+  }
+
   try {
     const resize = await imageResize(imageName, width, height);
     if (!resize) {
@@ -31,7 +36,7 @@ images.get('/', async (req, res) => {
         message: 'Image not found',
       });
     }
-    res.sendFile(outputFile);
+    return res.sendFile(outputFile);
   } catch (e) {
     return res.status(500).json({
       status: 'error',
