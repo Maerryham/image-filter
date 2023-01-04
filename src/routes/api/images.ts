@@ -16,7 +16,7 @@ images.get('/', async (req, res) => {
   const validator = validateInput(imageName, width, height);
  
   if (!validator.status){
-    res.status(400).json({
+    return res.status(400).json({
       status: 'error',
       code: '400',
       message: validator.message
@@ -29,8 +29,9 @@ images.get('/', async (req, res) => {
 
   try {
     const resize = await imageResize(imageName, width, height);
+    
     if (!resize) {
-      res.status(404).json({
+      return res.status(404).json({
         status: 'error',
         code: '404',
         message: 'Image not found',

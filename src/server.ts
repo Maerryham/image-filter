@@ -25,7 +25,7 @@ app.use(cors());
 //Load Routers
 app.use('/api', routes);
 
-app.get('/', (req, res) => {
+app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello World!');
 });
 
