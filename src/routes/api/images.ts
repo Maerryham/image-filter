@@ -10,7 +10,7 @@ images.get('/', async (req, res) => {
   const imageName: string = (req.query.filename as unknown as string) || '';
   const width: number = (Number(req.query.width) as unknown as number) || 0;
   const height: number = (Number(req.query.height) as unknown as number) || 0;
-  const outputFile = path.join(__dirname, `../../assets/thumbs/${imageName}.jpeg`);
+  const outputFile = path.join(__dirname, `../../assets/thumbs/${imageName}_${width}_${height}.jpeg`);
 
   // Validate the input data
   const validator = validateInput(imageName, width, height);
