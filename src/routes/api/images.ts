@@ -1,12 +1,18 @@
 import express from 'express';
+import { Request, Response } from 'express';
 import path from 'path';
 import { imageResize } from '../../controllers/imageResizer';
 import { validateInput } from '../../utilities/validateInput';
 import fs from 'fs'
 
 const images = express.Router();
+type ImageResponse = {
+  status: string,
+  code: string,
+  message: string,
+}
 
-images.get('/', async (req, res) => {
+images.get('/', async (req: Request, res: Response): Promise<Response<ImageResponse> | Promise<unknown>> => {
   const imageName: string = (req.query.filename as unknown as string) || '';
   const width: number = (Number(req.query.width) as unknown as number) || 0;
   const height: number = (Number(req.query.height) as unknown as number) || 0;

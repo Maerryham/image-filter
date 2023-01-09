@@ -1,4 +1,8 @@
-export const validateInput = (imageName: string, width: number, height: number) => {
+type ValidateInputResponse = {
+    status: boolean;
+    message: string;
+}
+export const validateInput = (imageName: string, width: number, height: number): ValidateInputResponse => {
     if (!imageName || imageName===null || imageName === undefined || imageName===''){
         return { status: false, message: "Image name not specified" }
     }
