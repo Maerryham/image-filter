@@ -43,6 +43,7 @@ var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var imageResizer_1 = require("../../controllers/imageResizer");
 var validateInput_1 = require("../../utilities/validateInput");
+var fs_1 = __importDefault(require("fs"));
 var images = express_1.default.Router();
 images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var imageName, width, height, outputFile, validator, resize, e_1;
@@ -52,14 +53,17 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 imageName = req.query.filename || '';
                 width = Number(req.query.width) || 0;
                 height = Number(req.query.height) || 0;
-                outputFile = path_1.default.join(__dirname, "../../assets/thumbs/".concat(imageName, ".jpeg"));
+                outputFile = path_1.default.join(__dirname, "../../assets/thumbs/".concat(imageName, "_").concat(width, "_").concat(height, ".jpeg"));
                 validator = (0, validateInput_1.validateInput)(imageName, width, height);
                 if (!validator.status) {
-                    res.status(400).json({
-                        status: 'error',
-                        code: '400',
-                        message: validator.message
-                    });
+                    return [2, res.status(400).json({
+                            status: 'error',
+                            code: '400',
+                            message: validator.message
+                        })];
+                }
+                if (fs_1.default.existsSync(outputFile)) {
+                    return [2, res.sendFile(outputFile)];
                 }
                 _a.label = 1;
             case 1:
@@ -68,14 +72,13 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 2:
                 resize = _a.sent();
                 if (!resize) {
-                    res.status(404).json({
-                        status: 'error',
-                        code: '404',
-                        message: 'Image not found',
-                    });
+                    return [2, res.status(404).json({
+                            status: 'error',
+                            code: '404',
+                            message: 'Image not found',
+                        })];
                 }
-                res.sendFile(outputFile);
-                return [3, 4];
+                return [2, res.sendFile(outputFile)];
             case 3:
                 e_1 = _a.sent();
                 return [2, res.status(500).json({

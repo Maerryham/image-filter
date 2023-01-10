@@ -48,9 +48,8 @@ var imageResize = function (imageName, width, height) { return __awaiter(void 0,
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                console.log(imageName, width, height);
                 inputFile = path_1.default.join(__dirname, "../assets/full/".concat(imageName, ".jpeg"));
-                outputFile = path_1.default.join(__dirname, "../assets/thumbs/".concat(imageName, ".jpeg"));
+                outputFile = path_1.default.join(__dirname, "../../assets/thumbs/".concat(imageName, "_").concat(width, "_").concat(height, ".jpeg"));
                 return [4, (0, sharp_1.default)(inputFile).resize(width, height).toFile(outputFile)];
             case 1: return [2, _a.sent()];
             case 2:
