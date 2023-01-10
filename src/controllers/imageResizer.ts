@@ -5,7 +5,7 @@ export const imageResize = async (imageName: string, width: number, height: numb
   try {
 
     const inputFile = path.join(__dirname, `../assets/full/${imageName}.jpeg`);
-    const outputFile = path.join(__dirname, `../../assets/thumbs/${imageName}_${width}_${height}.jpeg`);
+    const outputFile = path.join(__dirname, `../assets/thumbs/${imageName}_${width}_${height}.jpeg`);
 
     return await sharp(inputFile).resize(width, height).toFile(outputFile);
   } catch (err) {

@@ -48,7 +48,7 @@ describe("Test endpoint with responses", function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, request
-                        .get("/images?filename=garden&height=500&width=500")];
+                        .get("/images/?filename=garden&height=500&width=500")];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
