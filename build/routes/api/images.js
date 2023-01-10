@@ -44,8 +44,8 @@ var path_1 = __importDefault(require("path"));
 var imageResizer_1 = require("../../controllers/imageResizer");
 var validateInput_1 = require("../../utilities/validateInput");
 var fs_1 = __importDefault(require("fs"));
-var images = express_1.default.Router();
-images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var imageRoute = express_1.default.Router();
+imageRoute.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var imageName, width, height, outputFile, validator, resize, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -90,4 +90,4 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); });
-exports.default = images;
+exports.default = imageRoute;

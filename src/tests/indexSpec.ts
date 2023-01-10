@@ -6,11 +6,11 @@ const request = supertest(routes);
 
 describe("Test endpoint with responses", () => {
     it("It should get the api endpoint", async (
-        done
+        // done
     ) => {
         const response = await request
-           .get("/images");
+           .get("/images?filename=garden&height=500&width=500");
         expect(response.status).toBe(200);
-        done();
+        // done();
     });
 })

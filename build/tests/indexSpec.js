@@ -43,16 +43,17 @@ var supertest_1 = __importDefault(require("supertest"));
 var index_1 = __importDefault(require("../routes/index"));
 var request = (0, supertest_1.default)(index_1.default);
 describe("Test endpoint with responses", function () {
-    it("It should get the api endpoint", function (done) { return __awaiter(void 0, void 0, void 0, function () {
+    it("It should get the api endpoint", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
         return __generator(this, function (_a) {
-            request
-                .get("/images")
-                .expect(200).end(function (err, res) {
-                if (err !== null) {
-                    return done.fail(err);
-                }
-            });
-            return [2];
+            switch (_a.label) {
+                case 0: return [4, request
+                        .get("/images?filename=garden&height=500&width=500")];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2];
+            }
         });
     }); });
 });
