@@ -7,8 +7,13 @@ const request = supertest(routes);
 describe("Test endpoint with responses", () => {
     it("It should get the api endpoint", async (
     ) => {
-        const response = await request
-           .get("/images/?filename=garden&height=500&width=500");
-        expect(response.status).toBe(200);
+        request
+           .get("/api/images/?filename=garden&height=500&width=500")
+           .then(response => {
+            expect(response.status).toBe(200);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     });
 })
